@@ -10,6 +10,7 @@ import 'package:soundpool/soundpool.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
 import 'package:wangreceiveback/product_model.dart';
+import 'package:wangreceiveback/product_detail.dart';
 
 class AddProductPage extends StatefulWidget {
   @override
@@ -236,9 +237,9 @@ class _AddProductPageState extends State<AddProductPage> {
                   onPressed: (){
                     //_addCheckStockProductList(a);
 
-                    /*Navigator.push(
+                    Navigator.push(
                         context,
-                        MaterialPageRoute(builder: (context) => ProductDetailPage(productsVal: a)));*/
+                        MaterialPageRoute(builder: (context) => ProductDetailPage(productsVal: a)));
                   }
               ),
             );
