@@ -111,21 +111,21 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
 
     units = [];
 
-    if(widget.productsVal.countStockProdUnit1.toString() != "null"){
-      units.add(widget.productsVal.countStockProdUnit1.toString());
+    if(widget.productsVal.productUnit1.toString() != "null"){
+      units.add(widget.productsVal.productUnit1.toString());
       //setState(() {
       //_currentUnit = widget.product['unit1'].toString();
       //});
     }
-    if(widget.productsVal.countStockProdUnit2.toString() != "null"){
-      units.add(widget.productsVal.countStockProdUnit2.toString());
+    if(widget.productsVal.productUnit2.toString() != "null"){
+      units.add(widget.productsVal.productUnit2.toString());
     }
-    if(widget.productsVal.countStockProdUnit3.toString() != "null"){
-      units.add(widget.productsVal.countStockProdUnit3.toString());
+    if(widget.productsVal.productUnit3.toString() != "null"){
+      units.add(widget.productsVal.productUnit3.toString());
     }
 
     if(_currentUnit == null){
-      _currentUnit = widget.productsVal.countStockProdUnit1.toString();
+      _currentUnit = widget.productsVal.productUnit1.toString();
     }
 
     return Scaffold(
@@ -147,10 +147,10 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
           child: Column(
             //crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
-              Text('Code : ${widget.productsVal.countStockProdCode}', style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
-              Text('Name : ${widget.productsVal.countStockProdName}', style: TextStyle(fontSize: 16)),
+              Text('Code : ${widget.productsVal.productCode}', style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
+              Text('Name : ${widget.productsVal.productName}', style: TextStyle(fontSize: 16)),
               Container(
-                child: Image.network('https://www.wangpharma.com/cms/product/${widget.productsVal.countStockProdPic}', fit: BoxFit.cover, width: 350, height: 350,),
+                child: Image.network('https://www.wangpharma.com/cms/product/${widget.productsVal.productPic}', fit: BoxFit.cover, width: 350, height: 350,),
               ),
               SizedBox(
                 height: 20,
