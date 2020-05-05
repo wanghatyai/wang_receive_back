@@ -210,12 +210,12 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
                   ),
                 ],
               ),
-              TextField(
+              /*TextField(
                 controller: valComment,
                 decoration: InputDecoration(
                     labelText: "หมายเหตุ"
                 ),
-              ),
+              ),*/
               Padding (
                 padding: const EdgeInsets.all(20),
                 child: SizedBox (
