@@ -5,6 +5,7 @@ import 'package:intl/intl.dart';
 import 'package:flutter/services.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:wangreceiveback/pr_model.dart';
 
 class ReportPage extends StatefulWidget {
@@ -66,15 +67,132 @@ class _ReportPageState extends State<ReportPage> {
     });
   }
 
-  Future<Null> refreshList() async {
+  Future<Null> _refreshList() async {
+    //refreshKey.currentState?.show(atTop: false);
     refreshKey.currentState?.show(atTop: false);
-    await Future.delayed(Duration(seconds: 2));
-
-    setState(() {
-      getPrProduct();
+    //refreshKey.currentState?.initState();
+    await Future.delayed(Duration(seconds: 2),(){
+      setState(() {
+        getPrProduct();
+      });
     });
 
     return null;
+  }
+
+  showDialogDelConfirm(id) {
+    // flutter defined function
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        // return object of type Dialog
+        return AlertDialog(
+          title: Text("แจ้งเตือน"),
+          content: Text("ยืนยันลบรายการ"),
+          actions: <Widget>[
+            // usually buttons at the bottom of the dialog
+            FlatButton(
+              color: Colors.red,
+              child: Text("ยกเลิก",style: TextStyle(color: Colors.white, fontSize: 18),),
+              onPressed: () {
+                Navigator.pop(context);
+              },
+            ),
+            SizedBox(
+              width: 100,
+            ),
+            FlatButton(
+              color: Colors.green,
+              child: Text("ตกลง",style: TextStyle(color: Colors.white, fontSize: 18),),
+              onPressed: () {
+                removeCountStockHis(id);
+                //Navigator.of(context).pop();
+                Navigator.pop(context);
+              },
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+  removeCountStockHis(cthID) async{
+
+    print(cthID);
+
+    if(cthID != null) {
+
+      var uri = Uri.parse("https://wangpharma.com/API/receiveProductBack.php");
+      var request = http.MultipartRequest("POST", uri);
+
+      /*SharedPreferences prefs = await SharedPreferences.getInstance();
+      empCodeStock = prefs.getString("empCodeStock");*/
+
+      //request.fields['ct_code'] = ;
+      request.fields['act'] = 'Del';
+      request.fields['pr_del_id'] = cthID;
+      //request.fields['ctl_stock'] = productVal.productStockQ;
+      //request.fields['emp_pickingorder'] = empCodeStock;
+
+      var response = await request.send();
+
+      if (response.statusCode == 200) {
+
+        var respStr = await response.stream.bytesToString();
+
+        print("add OK");
+        print(respStr);
+
+        showToast('ลบรายการ');
+        setState(() {
+          getPrProduct();
+        });
+
+        //Navigator.pop(context);
+
+        //Navigator.of(context).pushNamedAndRemoveUntil('/Home', (Route<dynamic> route) => false);
+
+        /*Navigator.pushReplacement(
+            context,
+            MaterialPageRoute(builder: (context) => Home())).then((r){
+        });*/
+
+        //Navigator.pop(context);
+
+      } else {
+        print("add Error");
+      }
+
+      //showToastAddFast();
+      //Navigator.of(context).pushNamedAndRemoveUntil('/Home', (Route<dynamic> route) => false);
+      //Navigator.pop(context);
+
+    }else{
+      _showAlert();
+    }
+
+  }
+
+  _showAlert() async {
+    return showDialog<void>(
+      context: context,
+      barrierDismissible: true, // user must tap button!
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text('แจ้งเตือน'),
+          content: Text('คุณกรอกรายละเอียดไม่ครบถ้วน'),
+        );
+      },
+    );
+  }
+
+  showToast(textVal){
+    Fluttertoast.showToast(
+        msg: textVal,
+        toastLength: Toast.LENGTH_SHORT,
+        gravity: ToastGravity.CENTER,
+        timeInSecForIosWeb: 3
+    );
   }
 
   @override
@@ -84,6 +202,7 @@ class _ReportPageState extends State<ReportPage> {
           :RefreshIndicator(
         key: refreshKey,
         child: ListView.separated(
+          //physics: AlwaysScrollableScrollPhysics(),
           separatorBuilder: (BuildContext context, int index) => Divider(),
           controller: _scrollController,
           itemBuilder: (context, int index){
@@ -103,11 +222,11 @@ class _ReportPageState extends State<ReportPage> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: <Widget>[
                       Text('${productAll[index].prProductCode}'),
-                      Text('พนง.เปิด ${productAll[index].prEmpScan}', style: TextStyle(color: Colors.green),),
+                      Text('พนง.รับ ${productAll[index].prEmpScan}', style: TextStyle(color: Colors.green),),
                     ],
                   ),
                   //Text('นับล่าสุด ${productAll[index].countStockNumCount} : ${productAll[index].countStockProdUnit1}', style: TextStyle(color: Colors.red),),
-                  //Text('เปิดงาน ${productAll[index].countStockDateAdd}', style: TextStyle(color: Colors.blueGrey),),
+                  Text('รับคืน ${productAll[index].prDateScan}', style: TextStyle(color: Colors.blueGrey),),
                   //productAll[index].recevicProductUnitNew == null
                   //? Text('หน่วยย่อย : ${productAll[index].recevicTCqtySub} ${productAll[index].recevicProductUnit}', style: TextStyle(color: Colors.lightBlue))
                   //: Text('หน่วยย่อย : ${productAll[index].recevicTCqtySub} ${productAll[index].recevicProductUnitNew}', style: TextStyle(color: Colors.lightBlue)),
@@ -116,6 +235,7 @@ class _ReportPageState extends State<ReportPage> {
               trailing: IconButton(
                   icon: Icon(Icons.list, size: 40,),
                   onPressed: (){
+                    showDialogDelConfirm(productAll[index].prId);
                     //addToOrderFast(productAll[index]);
                     /*Navigator.push(
                         context,
@@ -126,7 +246,7 @@ class _ReportPageState extends State<ReportPage> {
           },
           itemCount: productAll != null ? productAll.length : 0,
         ),
-        onRefresh: refreshList,
+        onRefresh: _refreshList,
       ),
     );
   }
