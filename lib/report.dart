@@ -226,6 +226,7 @@ class _ReportPageState extends State<ReportPage> {
                     ],
                   ),
                   //Text('นับล่าสุด ${productAll[index].countStockNumCount} : ${productAll[index].countStockProdUnit1}', style: TextStyle(color: Colors.red),),
+                  Text('จำนวน ${productAll[index].prProductQty} / ${productAll[index].prProductUnit}', style: TextStyle(color: Colors.redAccent),),
                   Text('รับคืน ${productAll[index].prDateScan}', style: TextStyle(color: Colors.blueGrey),),
                   //productAll[index].recevicProductUnitNew == null
                   //? Text('หน่วยย่อย : ${productAll[index].recevicTCqtySub} ${productAll[index].recevicProductUnit}', style: TextStyle(color: Colors.lightBlue))
