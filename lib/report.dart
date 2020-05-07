@@ -6,11 +6,7 @@ import 'package:flutter/services.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'package:fluttertoast/fluttertoast.dart';
-<<<<<<< HEAD
-import 'package:wangreceiveback/pr_model.dart';
-=======
 import 'package:POPR/pr_model.dart';
->>>>>>> init wang get back
 
 class ReportPage extends StatefulWidget {
   @override

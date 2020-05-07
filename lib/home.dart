@@ -2,15 +2,9 @@ import 'package:flutter/material.dart';
 
 import 'package:shared_preferences/shared_preferences.dart';
 
-<<<<<<< HEAD
-import 'package:wangreceiveback/add_product.dart';
-import 'package:wangreceiveback/report.dart';
-import 'package:wangreceiveback/user.dart';
-=======
 import 'package:POPR/add_product.dart';
 import 'package:POPR/report.dart';
 import 'package:POPR/user.dart';
->>>>>>> init wang get back
 
 class Home extends StatefulWidget {
   @override
