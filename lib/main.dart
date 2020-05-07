@@ -5,7 +5,11 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
+<<<<<<< HEAD
 import 'package:wangreceiveback/home.dart';
+=======
+import 'package:POPR/home.dart';
+>>>>>>> init wang get back
 
 void main() => runApp(MyApp());
 

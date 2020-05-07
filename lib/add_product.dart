@@ -9,8 +9,13 @@ import 'package:barcode_scan/barcode_scan.dart';
 import 'package:soundpool/soundpool.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
+<<<<<<< HEAD
 import 'package:wangreceiveback/product_model.dart';
 import 'package:wangreceiveback/product_detail.dart';
+=======
+import 'package:POPR/product_model.dart';
+import 'package:POPR/product_detail.dart';
+>>>>>>> init wang get back
 
 class AddProductPage extends StatefulWidget {
   @override
