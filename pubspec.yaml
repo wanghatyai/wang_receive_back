@@ -24,7 +24,7 @@ dependencies:
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^0.1.3
   http: ^0.12.1
-  shared_preferences: ^0.5.7
+  shared_preferences: ^0.5.7+1
   #flutter_barcode_scanner: ^0.1.7
   barcode_scan: ^3.0.0
   soundpool: ^1.0.1
