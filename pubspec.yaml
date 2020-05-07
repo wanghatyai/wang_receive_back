@@ -1,8 +1,4 @@
-<<<<<<< HEAD
-name: wangreceiveback
-=======
 name: POPR
->>>>>>> init wang get back
 description: A new Flutter application.
 
 # The following defines the version and build number for your application.
@@ -28,11 +24,7 @@ dependencies:
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^0.1.3
   http: ^0.12.1
-<<<<<<< HEAD
-  shared_preferences: ^0.5.7
-=======
   shared_preferences: ^0.5.7+1
->>>>>>> init wang get back
   #flutter_barcode_scanner: ^0.1.7
   barcode_scan: ^3.0.0
   soundpool: ^1.0.1
