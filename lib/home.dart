@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 
 import 'package:shared_preferences/shared_preferences.dart';
 
-import 'package:POPR/add_product.dart';
-import 'package:POPR/report.dart';
-import 'package:POPR/user.dart';
+import 'package:wangreceiveback/add_product.dart';
+import 'package:wangreceiveback/report.dart';
+import 'package:wangreceiveback/user.dart';
 
 class Home extends StatefulWidget {
   @override
