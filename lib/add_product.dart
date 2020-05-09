@@ -62,7 +62,7 @@ class _AddProductPageState extends State<AddProductPage> {
 
     //productAll = [];
 
-    final res = await http.get('https://wangpharma.com/API/product.php?SearchVal=$searchVal&act=Search');
+    final res = await http.get('https://wangpharma.com/API/receiveProduct.php?SearchVal=$searchVal&act=Search');
 
     if(res.statusCode == 200){
 
